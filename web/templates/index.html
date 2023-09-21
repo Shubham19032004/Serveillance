@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object Detection Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Object Detection Data</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Timestamp</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>ip_address</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td><img src="data:image/jpeg;base64,{{ item.image_filename }}" width="200" height="200"></td>
+                <td>{{ item.timestamp }}</td>
+                <td>{{ item.longitude }}</td>
+                <td>{{ item.latitude }}</td>
+                <td>{{ item.ip_address}}</td>
+                <td>{{ item.address }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
