@@ -6,22 +6,26 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 import time
 import base64
+from dotenv import load_dotenv
+import os
+# Load environment variables from .env file
+load_dotenv()
 # Set up MongoDB connection
-client = pymongo.MongoClient("mongodb://localhost:27017/")
+client = pymongo.MongoClient(os.getenv("MONGODB_URL"))
 db = client["object_detection_db"]
 collection = db["detections"]
 
 
 # Twilio credentials
-account_sid = 'ACae74c03577f0e0c567d2d7f868e99683'
-auth_token = '84cd4df53b27363e7990028c3ef2e5ca'
-twilio_number = '+12622879836'
-target_number = '+918368227176'
+account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+twilio_number = os.getenv('TWILIO_NUMBER')
+target_number = os.getenv('TARGET_NUMBER')
 
 #Send Email
 def send_email(subject, body, image_base64):
-    from_email = 'shubhamnainwal4@gmail.com'  # Your email address
-    to_email = 'shubhamnainwal70@gmail.com'   # Recipient's email address
+    from_email = 'sdw4@gmail.com'  # Your email address
+    to_email = 'wee70@gmail.com'   # Recipient's email address
 
     msg = MIMEMultipart()
     msg['From'] = from_email
@@ -35,10 +39,10 @@ def send_email(subject, body, image_base64):
     msg.attach(image)
 
     # Connect to the SMTP server and send the email
-    smtp_server = 'smtp.gmail.com'  # Gmail's SMTP server address
-    smtp_port = 587
-    smtp_username = 'shubhamnainwal4@gmail.com'  # Your email address
-    smtp_password = 'bzcvvwibvpaxpjop'   
+    smtp_server = os.getenv('SMTP_SERVER')
+    smtp_port = int(os.getenv('SMTP_PORT'))
+    smtp_username = os.getenv('SMTP_USERNAME')
+    smtp_password = os.getenv('SMTP_PASSWORD')
 
     try:
         server = smtplib.SMTP(smtp_server, smtp_port)
