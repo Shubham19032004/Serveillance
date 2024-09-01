@@ -73,8 +73,8 @@ files = {
 
 #Send Email
 def send_email(subject, body, image_filename):
-    from_email ='shubhamnainwal4@gmail.com'  # Your email address
-    to_email = 'shubhamnainwal70@gmail.com'   # Recipient's email address
+    from_email ='@gmail.com'  # Your email address
+    to_email = '@gmail.com'   # Recipient's email address
 
     msg = MIMEMultipart()
     msg['From'] = from_email
@@ -88,10 +88,10 @@ def send_email(subject, body, image_filename):
         msg.attach(image)
 
     # Connect to the SMTP server and send the email
-    smtp_server = 'smtp.gmail.com'  # Gmail's SMTP server address
+    smtp_server = 'smtp.com'  # Gmail's SMTP server address
     smtp_port = 587
-    smtp_username = 'shubhamnainwal4@gmail.com'  # Your email address
-    smtp_password = 'bzcvvwibvpaxpjop'   
+    smtp_username = '@gmail.com'  # Your email address
+    smtp_password = ''   
 
     try:
         server = smtplib.SMTP(smtp_server, smtp_port)
@@ -110,7 +110,7 @@ def whatapp(image_filename):
     img=image_filename
     time_hour=datetime.hour
     time_min=datetime.minute
-    ph_no="+918368227176"
+    ph_no=""
 
     pywhatkit.sendwhatmsg(ph_no,img, time_hour, time_min)
     
